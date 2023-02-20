@@ -57,7 +57,10 @@ class Word:
 		return len(set(self.word))
 
 def __main__():
-	data_file = open("cluster_final.txt", "r")
+	data_file = open("cluster.txt", "r")
+	new_data_file = open("cluster_final_data.txt", "w")
+
+	new_data_file.write("Word  Cluster_ID\n")
 
 	word_list = [[] for cluster_id in range(CLUSTER_NUMBER)]
 	for word_id in range(WORD_NUMBER):
@@ -68,6 +71,7 @@ def __main__():
 		for perc_id in range(PERCENT_NUMBER):
 			word.percent[perc_id] = int(datas[3 + perc_id])
 		word_list[word.cluster_id].append(word)
+		new_data_file.write(word.word + ' ' + str(word.cluster_id) + '\n')
 		# print(word.word)
 
 	word_result_cluster(word_list)
